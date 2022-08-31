@@ -30,11 +30,11 @@ public class Usuario {
     private String nombre;
     @NotNull
     @Column(unique = true)
-    private String nombreDeUsuario;
+    private String nombreUsuario;
     @NotNull
-    private String correo;
+    private String email;
     @NotNull
-    private String contra;
+    private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
@@ -42,11 +42,11 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String nombreDeUsuario, String correo, String contra) {
+    public Usuario(String nombre, String nombreUsuario, String email, String password) {
         this.nombre = nombre;
-        this.nombreDeUsuario = nombreDeUsuario;
-        this.correo = correo;
-        this.contra = contra;
+        this.nombreUsuario = nombreUsuario;
+        this.email = email;
+        this.password = password;
     }
 
     public int getId() {
@@ -65,28 +65,28 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getNombreDeUsuario() {
-        return nombreDeUsuario;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setNombreDeUsuario(String nombreDeUsuario) {
-        this.nombreDeUsuario = nombreDeUsuario;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getContra() {
-        return contra;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContra(String contra) {
-        this.contra = contra;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Set<Rol> getRoles() {

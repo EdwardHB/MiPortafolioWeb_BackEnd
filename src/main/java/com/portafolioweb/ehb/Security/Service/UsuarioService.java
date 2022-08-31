@@ -21,16 +21,16 @@ public class UsuarioService {
     @Autowired
     IUsuarioRepository iUsuarioRepository;
     
-    public Optional<Usuario> getByNombreDeUsuario(String nombreDeUsuario){
-        return iUsuarioRepository.findByNombreDeUsuario(nombreDeUsuario);
+    public Optional<Usuario> getByNombreUsuario(String nombreUsuario){
+        return iUsuarioRepository.findByNombreUsuario(nombreUsuario);
     }
     
-    public boolean existByNombreDeUsuario(String nombreDeUsuario){
-        return iUsuarioRepository.existByNombreDeUsuardio(nombreDeUsuario);
+    public boolean existByNombreUsuario(String nombreUsuario){
+        return iUsuarioRepository.existByNombreUsuario(nombreUsuario);
     }
     
-    public boolean existByCorreo(String correo){
-        return iUsuarioRepository.existByCorreo(correo);
+    public boolean existByEmail(String email){
+        return iUsuarioRepository.existByEmail(email);
     }
     
     public void save(Usuario usuario){

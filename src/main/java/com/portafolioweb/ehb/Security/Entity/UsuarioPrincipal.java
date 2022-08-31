@@ -18,22 +18,24 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class UsuarioPrincipal implements UserDetails {
 
     private String nombre;
-    private String nombreDeUsuario;
-    private String correo;
-    private String contra;
+    private String nombreUsuario;
+    private String email;
+    private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UsuarioPrincipal(String nombre, String nombreDeUsuario, String correo, String contra, Collection<? extends GrantedAuthority> authorities) {
+    public UsuarioPrincipal(String nombre, String nombreUsuario, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.nombre = nombre;
-        this.nombreDeUsuario = nombreDeUsuario;
-        this.correo = correo;
-        this.contra = contra;
+        this.nombreUsuario = nombreUsuario;
+        this.email = email;
+        this.password = password;
         this.authorities = authorities;
     }
 
-    public static UsuarioPrincipal buil(Usuario usuario) {
-        List<GrantedAuthority> authorities = usuario.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol.getRolNombre().name())).collect(Collectors.toList());
-        return new UsuarioPrincipal(usuario.getNombre(), usuario.getNombreDeUsuario(), usuario.getCorreo(), usuario.getContra(), authorities);
+    public static UsuarioPrincipal build(Usuario usuario) {
+        List<GrantedAuthority> authorities = usuario.getRoles().stream()
+                .map(rol -> new SimpleGrantedAuthority(rol.getRolNombre().name())).collect(Collectors
+                        .toList());
+        return new UsuarioPrincipal(usuario.getNombre(), usuario.getNombreUsuario(), usuario.getEmail(), usuario.getPassword(), authorities);
     }
 
     @Override
@@ -43,12 +45,20 @@ public class UsuarioPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return contra;
+        return password;
+    }
+    
+     public String getNombre() {
+        return nombre;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override
     public String getUsername() {
-        return nombreDeUsuario;
+        return nombreUsuario;
     }
 
     @Override
@@ -71,12 +81,6 @@ public class UsuarioPrincipal implements UserDetails {
         return true;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
+   
 
 }
